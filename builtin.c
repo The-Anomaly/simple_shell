@@ -3,9 +3,9 @@
 /**
  * findBuiltIns - validates if command is builtin and executes
  * @build: input build
- * Return: true if found, false if not
+ * Return: 1 if found, 0 if not
  */
-_Bool findBuiltIns(config *build)
+int findBuiltIns(config *build)
 {
 	register int i = 0;
 	type_b getBuiltIns[] = {
@@ -26,11 +26,11 @@ _Bool findBuiltIns(config *build)
 		{
 			getBuiltIns[i].func(build);
 			freeArgsAndBuffer(build);
-			return (true);
+			return (1);
 		}
 		i++;
 	}
-	return (false);
+	return (0);
 }
 
 /**

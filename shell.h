@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <sys/wait.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -74,21 +73,21 @@ typedef struct builtInCommands
 config *configInit(config *build);
 
 /* built_ins */
-_Bool findBuiltIns(config *build);
+int findBuiltIns(config *build);
 int exitFunc(config *build);
 int historyFunc(config *build);
 int aliasFunc(config *build);
 
 /* cd */
 int cdFunc(config *);
-_Bool cdToHome(config *build);
-_Bool cdToPrevious(config *build);
-_Bool cdToCustom(config *build);
-_Bool updateEnviron(config *build);
+int cdToHome(config *build);
+int cdToPrevious(config *build);
+int cdToCustom(config *build);
+int updateEnviron(config *build);
 
 /* cd2 */
 int updateOld(config *build);
-_Bool updateCur(config *build, int index);
+int updateCur(config *build, int index);
 
 /* env */
 int envFunc(config *build);
@@ -137,13 +136,13 @@ void displayNewLine(void);
 void sigintHandler(int sigint);
 
 /* check_path */
-_Bool checkPath(config *);
-_Bool checkEdgeCases(config *build);
+int checkPath(config *);
+int checkEdgeCases(config *build);
 
 /* split_string */
-_Bool splitString(config *build);
+int splitString(config *build);
 unsigned int countWords(char *s);
-_Bool isSpace(char c);
+int isSpace(char c);
 
 /* string_helpers1 */
 int _strlen(char *s);

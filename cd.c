@@ -8,7 +8,7 @@
 int cdFunc(config *build)
 {
 	register uint count = 0;
-	_Bool ableToChange = false;
+	int ableToChange = 0;
 
 	count = countArgs(build->args);
 	if (count == 1)

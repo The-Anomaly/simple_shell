@@ -27,7 +27,7 @@ int cdFunc(config *build)
  * @build: input build
  * Return: true on success, false on failure
  */
-_Bool cdToHome(config *build)
+int cdToHome(config *build)
 {
 	register int i;
 	char *str, *ptr;
@@ -35,14 +35,14 @@ _Bool cdToHome(config *build)
 	i = searchNode(build->env, "HOME");
 	if (i == -1)
 	{
-		return (true);
+		return (1);
 	}
 	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
 	ptr++;
 	chdir(ptr);
 	free(str);
-	return (true);
+	return (1);
 }
 
 /**
@@ -51,7 +51,7 @@ _Bool cdToHome(config *build)
  * @build: input build
  * Return: true on success, false on failure
  */
-_Bool cdToPrevious(config *build)
+int cdToPrevious(config *build)
 {
 	register int i;
 	char *str, *ptr;
@@ -64,7 +64,7 @@ _Bool cdToPrevious(config *build)
 		chdir(current);
 		write(STDOUT_FILENO, current, _strlen(current));
 		displayNewLine();
-		return (true);
+		return (1);
 	}
 	str = getNodeAtIndex(build->env, i);
 	ptr = _strchr(str, '=');
@@ -73,7 +73,7 @@ _Bool cdToPrevious(config *build)
 	write(STDOUT_FILENO, ptr, _strlen(ptr));
 	displayNewLine();
 	free(str);
-	return (true);
+	return (1);
 }
 
 /**
@@ -81,7 +81,7 @@ _Bool cdToPrevious(config *build)
  * @build: input build
  * Return: true on success, false on failure
  */
-_Bool cdToCustom(config *build)
+int cdToCustom(config *build)
 {
 	register int changeStatus;
 
@@ -90,9 +90,9 @@ _Bool cdToCustom(config *build)
 	{
 		errno = EBADCD;
 		errorHandler(build);
-		return (false);
+		return (0);
 	}
-	return (true);
+	return (1);
 }
 
 /**
@@ -100,12 +100,12 @@ _Bool cdToCustom(config *build)
  * @build: input build
  * Return: true on success false on failure
  */
-_Bool updateEnviron(config *build)
+int updateEnviron(config *build)
 {
 	register int i;
 
 	i = updateOld(build);
 	updateCur(build, i);
-	return (true);
+	return (1);
 }
 

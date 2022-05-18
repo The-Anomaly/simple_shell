@@ -4,9 +4,9 @@
  * splitString - splits string into an array of strings
  * separated by spaces
  * @build: input build
- * Return: true if able to split, false if not
+ * Return: 1 if able to split, o if not
  */
-_Bool splitString(config *build)
+int splitString(config *build)
 {
 	register unsigned int i = 0;
 	char *tok, *cpy;
@@ -15,7 +15,7 @@ _Bool splitString(config *build)
 	{
 		build->args = NULL;
 		free(build->buffer);
-		return (false);
+		return (0);
 	}
 	build->args = malloc((countWords(build->buffer) + 1) * sizeof(char *));
 	cpy = _strdup(build->buffer);
@@ -28,7 +28,7 @@ _Bool splitString(config *build)
 	}
 	build->args[i] = NULL;
 	free(cpy);
-	return (true);
+	return (1);
 }
 
 /**
@@ -39,15 +39,15 @@ _Bool splitString(config *build)
 unsigned int countWords(char *str)
 {
 	register int words = 0;
-	_Bool wordOn = false;
+	int wordOn = 0;
 
 	while (*str)
 	{
 		if (isSpace(*str) && wordOn)
-			wordOn = false;
+			wordOn = 0;
 		else if (!isSpace(*str) && !wordOn)
 		{
-			wordOn = true;
+			wordOn = 1;
 			words++;
 		}
 		str++;
@@ -58,9 +58,9 @@ unsigned int countWords(char *str)
 /**
  * isSpace - determines if char is a space
  * @c: input char
- * Return: true or false
+ * Return: 1 or 0
  */
-_Bool isSpace(char c)
+int isSpace(char c)
 {
 	return (c == ' ');
 }

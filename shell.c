@@ -6,12 +6,12 @@
  */
 void shell(config *build)
 {
-	while (true)
+	while (1)
 	{
 		checkAndGetLine(build);
-		if (splitString(build) == false)
+		if (!splitString(build))
 			continue;
-		if (findBuiltIns(build) == true)
+		if (findBuiltIns(build))
 			continue;
 		checkPath(build);
 		forkAndExecute(build);
@@ -60,7 +60,7 @@ void checkAndGetLine(config *build)
 void stripComments(char *str)
 {
 	register int i = 0;
-	_Bool notFirst = false;
+	int notFirst = 0;
 
 	while (str[i])
 	{
@@ -78,7 +78,7 @@ void stripComments(char *str)
 			}
 		}
 		i++;
-		notFirst = true;
+		notFirst = 1;
 	}
 }
 

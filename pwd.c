@@ -38,9 +38,9 @@ int updateOld(config *build)
  * updateCur - updates PWD to accurately reflect current directory
  * @build: input build
  * @index: index in linked list of where to insert PWD env var
- * Return: true on success, false on failure
+ * Return: 1 on success, 0 on failure
  */
-_Bool updateCur(config *build, int index)
+int updateCur(config *build, int index)
 {
 	static char tmp[BUFSIZE], cwd[BUFSIZE];
 
@@ -55,5 +55,5 @@ _Bool updateCur(config *build, int index)
 		addNodeAtIndex(&build->env, 0, cwd);
 	insertNullByte(tmp, 0);
 	insertNullByte(cwd, 0);
-	return (true);
+	return (1);
 }

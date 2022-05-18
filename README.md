@@ -1,7 +1,7 @@
 # Simple Shell
 This project involves writing a simple UNIX command interpreter. 
 
-#Description
+# Description
 The simple shell reads commands from either a file or standard input and executes them.
 
 # How to run the simple shell
@@ -15,7 +15,7 @@ gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh
 ## To run:
 The shell can be used in both interactive and non-interactive mode.
 
-### Interactive mode:
+### Interactive mode Example:
 ```
 $ ./hsh
 ($) /bin/ls
@@ -25,7 +25,7 @@ hsh main.c shell.c etc...
 $
 ```
 
-### Non-intercative mode:
+### Non-intercative mode Example:
 ```
 $ echo "/bin/ls" | ./hsh
 hsh main.c shell.c etc...
